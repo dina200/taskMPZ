@@ -3,7 +3,7 @@
 
 int main() {
 	pstorage ob, ts, sts, svs;
-	initlist(50);
+	initlist(50 * 5 * 5);
 	pqueue qob;
 	pqueue qts;
 	pqueue qsts;
@@ -17,8 +17,8 @@ int main() {
 	newqueue(qsts, "Ochered' dlya srogal'nih stankov");
 	newqueue(qsvs, "Ochered' dlya sverliynie stankov");
 	initcreate(1,0);
-	starttrace();
-	while (systime < 8 * 60) { //
+	//starttrace();
+	while (systime < 8 * 60 * 5 * 5) { //
 		plan();
 		switch(sysevent) {
 			case 1: create(8*60/50); break;
@@ -31,13 +31,10 @@ int main() {
 						trans->pb[0] = false;	
 						inqueue(qsvs);					
 					}	
-					break;			
-//			case 3: if (qob->lq > 14 || qsvs->lq > 8) wait(5);
-//					break;			
+					break;
 			case 3: if(trans->pb[0]) enter(ob, 1); 	
 					else enter(svs, 1);	
-					break;
-				
+					break;				
 			case 4: if(trans->pb[0]) outqueue(qob); 
 					else outqueue(qsvs);
 					break;			
@@ -53,9 +50,7 @@ int main() {
 			
 			case 7: if(trans->pb[0]) inqueue(qsts);
 					else inqueue(qts);
-					break;			
-//			case 9: if (qsts->lq > 4 || qst->lq > 5) wait(11);
-//					break;			
+					break;		
 			case 8: if (trans->pb[0]) enter (sts, 1); 
 					else  enter (ts, 1);
 					break;			
@@ -73,9 +68,7 @@ int main() {
 															
 			case 12:if(trans->pb[0]) inqueue(qts);
 					else inqueue(qsts);
-					break;			
-//			case 15: if (qts->lq > 5 || qsts->lq > 4) wait(17);
-//					break;					
+					break;				
 			case 13: if (trans->pb[0]) enter (ts, 1); 
 					else  enter (sts, 1);
 					break;	
